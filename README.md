@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# EducAIn
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bu proje, Gemini AI teknolojisini kullanarak öğrencilerin internet üzerinden cevapladıkları soruları değerlendiren ve bu sorular hakkında geri bildirim sağlayan bir web sitesidir. Amacımız, öğrencilerin mekandan ve zamandan bağımsız olarak, internete erişimleri olduğu sürece öğretmene ihtiyaç duymadan sorularını çözebilmelerini ve anlamadıkları yerleri öğrenebilmelerini sağlamaktır.
 
-## Available Scripts
+## Başlangıç
 
-In the project directory, you can run:
+Bu bölüm, projeyi çalıştırmak için gereken minimum gereksinimler ve adımlar hakkında bilgi verir.
 
-### `npm start`
+### Gereksinimler
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Web tarayıcısı
+- İnternet bağlantısı
+- Firebase hesabı
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Kurulum (client)
 
-### `npm test`
+Adım adım bu projeyi çalıştırmak için yapmanız gerekenler:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Bu projeyi bilgisayarınıza klonlayın:
 
-### `npm run build`
+$ git clone 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Gerekli paketleri yükleyin:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+$ npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Projeyi çalıştırın:
 
-### `npm run eject`
+$ npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Kullanım
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+İlk olarak, kullanıcıyı login ekranı karşılar. Giriş sistemi Firebase üzerinden gelişmiş bir güvenlik duvarına sahiptir. Yeni bir hesap oluşturarak ya da Google hesabı ile giriş yaparak devam edilebilir.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Giriş yaptıktan sonra, kullanıcının karşısına gelen arayüzde iki ana buton bulunur: **Quiz** ve **Derslerim**.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Quiz:** Kullanıcının soruları yanıtlamasını ve Gemini AI teknolojisi ile değerlendirilmesini sağlar.
+- **Derslerim:** Kullanıcının katıldığı derslerin ve geçmiş quiz sonuçlarının görüntülenmesini sağlar.
 
-## Learn More
+## Katkıda Bulunma
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Katkıda bulunmak için lütfen şu adımları izleyin:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Projeyi fork'layın
+2. Yeni bir dal (`feature-isim`) oluşturun
+3. Değişikliklerinizi commit edin (`git commit -am 'Yeni özellik ekle'`)
+4. Dalınıza push edin (`git push origin feature-isim`)
+5. Bir pull request oluşturun
 
-### Code Splitting
+## Yazarlar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Deniz Karaca - *İlk Çalışma* - [Kullanıcı Adı](https://github.com/kullanıcı)
+- Furkan BALCI - *Katkıda Bulunan* - [Kullanıcı Adı](https://github.com/kullanıcı)
 
-### Analyzing the Bundle Size
+Ayrıca bu projeye katkıda bulunanların listesine bakın [contributors](https://github.com/URL/contributors).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Lisans
 
-### Making a Progressive Web App
+Bu proje MIT Lisansı altında lisanslanmıştır - daha fazla bilgi için [LICENSE](LICENSE) dosyasına bakın.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Teşekkür
 
-### Advanced Configuration
+Bu projeyi geliştirirken destek aldığımız herkese teşekkür ederiz.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
