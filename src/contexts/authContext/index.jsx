@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../../firebase/firebase";
-// import { GoogleAuthProvider } from "firebase/auth";
+import { auth, db } from "../../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const AuthContext = React.createContext();
 
@@ -12,47 +12,48 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [isEmailUser, setIsEmailUser] = useState(false);
-  const [isGoogleUser, setIsGoogleUser] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, initializeUser);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setCurrentUser({ ...user });
+        setUserLoggedIn(true);
+        await saveUserToDatabase(user);
+      } else {
+        setCurrentUser(null);
+        setUserLoggedIn(false);
+      }
+      setLoading(false);
+    });
     return unsubscribe;
   }, []);
 
-  async function initializeUser(user) {
-    if (user) {
+  async function saveUserToDatabase(user) {
+    try {
+      const userRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userRef);
 
-      setCurrentUser({ ...user });
-
-      // check if provider is email and password login
-      const isEmail = user.providerData.some(
-        (provider) => provider.providerId === "password"
-      );
-      setIsEmailUser(isEmail);
-
-      // check if the auth provider is google or not
-    //   const isGoogle = user.providerData.some(
-    //     (provider) => provider.providerId === GoogleAuthProvider.PROVIDER_ID
-    //   );
-    //   setIsGoogleUser(isGoogle);
-
-      setUserLoggedIn(true);
-    } else {
-      setCurrentUser(null);
-      setUserLoggedIn(false);
+      if (!userDoc.exists()) {
+        await setDoc(userRef, {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          createdAt: new Date(),
+        });
+        console.log("Kullanıcı Firestore'a kaydedildi.");
+      } else {
+        console.log("Kullanıcı zaten mevcut.");
+      }
+    } catch (error) {
+      console.error("Hata:", error.message);
     }
-
-    setLoading(false);
   }
 
   const value = {
-    userLoggedIn,
-    isEmailUser,
-    isGoogleUser,
     currentUser,
-    setCurrentUser
+    userLoggedIn,
   };
 
   return (
